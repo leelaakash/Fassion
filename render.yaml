@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: fashion-recommender-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: QDRANT_URL
+        sync: false
+      - key: COLLECTION_NAME
+        value: ctl_sample_5
+      - key: CLIP_MODEL_NAME
+        value: patrickjohncyh/fashion-clip
+      - key: LLM_MODEL
+        value: gemini/gemini-3.1-flash-lite
+      - key: ALLOWED_ORIGIN
+        sync: false
+    healthCheckPath: /health
+    autoDeploy: true
